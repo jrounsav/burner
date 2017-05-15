@@ -3,14 +3,24 @@ node {
     drupalPath = "/www/afs/"
 
     // Define the app name to be used
-    appName = "burner"  
+    appName = "burner"
+
+    // Defining dev & qa paths for build
+    devPath = drupalPath + "dev/" + appName
+    qaPath = drupalPath + "qa/" + appName
 
     stage('dev') {
-         def path = drupalPath + "dev/" + appName
-         echo path
+        echo devPath
+        sh 'cd devPath && git pull upstream master'
     }
     stage('qa') {
-        def path = drupalPath + "qa/" + appName
-        echo path
+        /* Run some 
+           tests here */
+        def mergeDev = "git pull " + devPath + " master"
+        sh mergeDev
+        echo qaPath
+    }
+    stage('prod') {
+    
     }
 }
