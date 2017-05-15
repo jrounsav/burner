@@ -12,7 +12,7 @@ node {
     stage('dev') {
         echo devPath
         checkout scm
-        sh "cd $devPath && git pull upstream master"
+        sh "cd $devPath && git pull origin master"
     }
     stage('qa') {
         /* Run some 
