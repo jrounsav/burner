@@ -11,7 +11,7 @@ node {
 
     stage('dev') {
         echo devPath
-        sh 'cd $devPath && git pull upstream master'
+        sh "cd $devPath && git pull upstream master"
     }
     stage('qa') {
         /* Run some 
