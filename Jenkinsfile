@@ -12,7 +12,7 @@ node {
     stage('dev') {
         echo devPath
         checkout scm
-        sh "cd $devPath && ls -la && git pull upstream master"
+        sh "cd $devPath && whoami && ls -la && git pull upstream master"
     }
     stage('qa') {
         /* Run some 
