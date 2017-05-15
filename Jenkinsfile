@@ -6,8 +6,8 @@ node {
     appName = "burner"
 
     // Defining dev & qa paths for build
-    devPath =$drupalPath + "dev/" + $appName
-    qaPath = drupalPath + "qa/" + $appName
+    devPath = drupalPath + "dev/" + appName
+    qaPath = drupalPath + "qa/" + appName
 
     stage('dev') {
         echo devPath
