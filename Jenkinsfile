@@ -5,16 +5,12 @@ node {
     // Define the app name to be used
     appName = "burner"  
 
-     stage('dev') {
-        steps {
-            def path = drupalPath + "dev/" + appName
-            echo path
-        }
+    stage('dev') {
+         def path = drupalPath + "dev/" + appName
+         echo path
     }
     stage('qa') {
-         steps {
-             def path = drupalPath + "qa/" + appName
-            echo path
-        }
+        def path = drupalPath + "qa/" + appName
+        echo path
     }
 }
