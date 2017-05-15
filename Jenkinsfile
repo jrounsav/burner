@@ -21,7 +21,4 @@ node {
         sh mergeDev
         echo qaPath
     }
-    stage('prod') {
-    
-    }
 }
