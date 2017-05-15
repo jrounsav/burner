@@ -1,20 +1,23 @@
 pipeline {
     agent any
 
+    // Define a path to the drupal apps
+    drupalPath = "/www/afs/"
+
+    // Define the app name to be used
+    appName = "burner"  
+
     stages {
-        stage('Build') {
+        stage('dev') {
             steps {
-                echo 'Building..'
+                def path = drupalPath + "dev/" + appName
+                echo path
             }
         }
-        stage('Test') {
+        stage('qa') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                def path = drupalPath + "qa/" + appName
+                echo path
             }
         }
     }
