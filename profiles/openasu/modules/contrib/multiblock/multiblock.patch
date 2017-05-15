@@ -1,0 +1,13 @@
+diff --git a/multiblock.module b/multiblock.module
+index aeedc6c..3cb8aa5 100644
+--- a/multiblock.module
++++ b/multiblock.module
+@@ -103,7 +103,7 @@ function multiblock_call_block($delta, $op, $edit) {
+       $block = module_invoke($block_info->module, 'block_'. $op, $block_info->orig_delta, $edit);
+     }
+     else {
+-      $block = module_invoke($block_info->module, 'block_'. $op, $block_info->orig_delta);
++      $block = module_invoke($block_info->module, 'block_'. $op, $block_info->orig_delta, $block_info->delta);
+     }
+     return $block;
+   }

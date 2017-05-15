@@ -1,0 +1,29 @@
+Index: multiblock.module
+===================================================================
+--- multiblock.module	(revision 3581)
++++ multiblock.module	(working copy)
+@@ -37,6 +37,10 @@ function multiblock_block($op = 'list', 
+     foreach ($blocks as $block) {
+ //      $list[$block->delta] = array('info' => check_plain($block->title));
+       $list[$block->delta] = array('info' => $block->title);
++      $cache = db_result(db_query('SELECT cache FROM {blocks} WHERE module = "%s" AND delta = "%s"', $block->module, $block->orig_delta));
++      if ($cache){
++        $list[$block->delta]['cache'] = $cache;
++      }
+     }
+     return $list;
+   }
+@@ -246,6 +250,13 @@ function multiblock_add_form_validate($f
+ function multiblock_add_form_submit($form, &$form_state) {
+   if (isset($form_state['values']['instance'])) {
+     db_query("UPDATE {multiblock} SET title='%s' WHERE delta=%d", $form_state['values']['title'], $form_state['values']['instance']);
++    $block = multiblock_get_block($form_state['values']['instance'], TRUE);
++    
++    $cache = db_result(db_query('SELECT cache FROM {blocks} WHERE module = "%s" AND delta = "%s"', $block->module, $block->orig_delta));
++    if ($cache){
++      db_query('UPDATE {blocks} SET cache = %d WHERE delta = "%s" AND module = "multiblock"', $cache, $block->delta);
++    }
++    
+     $form_state['redirect'] = 'admin/build/block/instances';
+     return;
+   }
