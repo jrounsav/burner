@@ -11,6 +11,7 @@ node {
 
     stage('dev') {
         echo devPath
+        checkout scm
         sh "cd $devPath && git pull upstream master"
     }
     stage('qa') {
